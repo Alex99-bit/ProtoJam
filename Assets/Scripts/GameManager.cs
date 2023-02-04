@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     {
         if(currentGameState == GameState.inGame)
         {
-            if (Input.GetButton("Pause"))
+            if (Input.GetButtonDown("Pause"))
             {
                 SetNewGameState(GameState.pause);
             }
@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
         }
         else if(currentGameState == GameState.pause)
         {
-            if (Input.GetButton("Pause"))
+            if (Input.GetButtonDown("Pause"))
             {
                 SetNewGameState(GameState.inGame);
             }
