@@ -45,3 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentGameState: 0
+  mainMenu: {fileID: 0}
+  inGame: {fileID: 0}
+  pause: {fileID: 0}
+  options: {fileID: 0}
+  gameOver: {fileID: 0}
+  contadorAlv: 0

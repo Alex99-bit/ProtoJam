@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3022498370959622132}
   - component: {fileID: 3022498370959622136}
   - component: {fileID: 3022498370959622139}
+  - component: {fileID: 719418097}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -123,11 +124,11 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 1393ed226c438ab4abce86fe48204fab, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &3022498370959622139
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -137,10 +138,25 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 3022498370959622135}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 1393ed226c438ab4abce86fe48204fab, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.75, y: 1.875}
   m_Direction: 0
+--- !u!114 &719418097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3022498370959622135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8acebcdc1a48fe84ba3ebb1dab2b60f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  jumpForce: 0
+  canJump: 0

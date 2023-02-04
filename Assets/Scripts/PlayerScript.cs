@@ -29,6 +29,7 @@ public class PlayerScript : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         playerRigid = GetComponent<Rigidbody2D>();
+        pt = GetComponent<Transform>();
         canJump = true;
 
         if (speed == 0)
@@ -49,6 +50,8 @@ public class PlayerScript : MonoBehaviour
         {
             Movement();
             Jump();
+
+            print("Alvvvvvv si jalalalalalalal");
         }
     }
 
@@ -56,6 +59,7 @@ public class PlayerScript : MonoBehaviour
     {
         // Player movement 
         playerRigid.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, playerRigid.velocity.y);
+        print("Si jalalalalalala por dooooooos");
 
         // for the animations
         if (Input.GetAxis("Horizontal") > 0)

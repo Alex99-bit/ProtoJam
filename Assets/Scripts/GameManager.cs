@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     // Singelton for manage the states of the game
     public static GameManager instance;
     public GameState currentGameState;
+    public GameObject mainMenu, inGame, pause, options, gameOver;
+    public float contadorAlv;
 
     private void Awake()
     {
@@ -14,6 +16,8 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
+        SetNewGameState(GameState.starGame);
+        contadorAlv = 0;
     }
 
     // Update is called once per frame
@@ -33,6 +37,8 @@ public class GameManager : MonoBehaviour
                 SetNewGameState(GameState.inGame);
             }
         }
+
+        contadorAlv += Time.deltaTime;
     }
 
     public void StartGame()
@@ -45,29 +51,64 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
+    public void OpenOptions()
+    {
+        SetNewGameState(GameState.options);
+    }
+
     public void GameOver()
     {
         SetNewGameState(GameState.gameOver);
     }
 
+    // Here selects the game state and how it behaves
     public void SetNewGameState(GameState newGameState)
     {
         switch (newGameState)
         {
             case GameState.starGame:
                 Time.timeScale = 0;
+                mainMenu.SetActive(true);
+                inGame.SetActive(false);
+                pause.SetActive(false);
+                options.SetActive(false);
+                gameOver.SetActive(false);
                 break;
 
             case GameState.inGame:
                 Time.timeScale = 1;
+                mainMenu.SetActive(false);
+                inGame.SetActive(true);
+                pause.SetActive(false);
+                options.SetActive(false);
+                gameOver.SetActive(false);
                 break;
 
             case GameState.pause:
                 Time.timeScale = 0;
+                mainMenu.SetActive(false);
+                inGame.SetActive(false);
+                pause.SetActive(true);
+                options.SetActive(false);
+                gameOver.SetActive(false);
                 break;
 
             case GameState.gameOver:
                 Time.timeScale = 0.6f;
+                mainMenu.SetActive(false);
+                inGame.SetActive(false);
+                pause.SetActive(false);
+                options.SetActive(false);
+                gameOver.SetActive(true);
+                break;
+
+            case GameState.options:
+                Time.timeScale = 0;
+                mainMenu.SetActive(false);
+                inGame.SetActive(false);
+                pause.SetActive(false);
+                options.SetActive(true);
+                gameOver.SetActive(false);
                 break;
         }
 
@@ -80,5 +121,6 @@ public enum GameState
     starGame,
     inGame,
     pause,
-    gameOver
+    gameOver,
+    options
 }
