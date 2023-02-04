@@ -13,7 +13,7 @@ public class PlayerScript : MonoBehaviour
 
     Rigidbody2D playerRigid;
     Animator animator;
-    Transform pt;
+    [SerializeField] Transform pt, transformVFX;
 
     // Animations states
     const string IS_ALIVE = "isAlive", IS_RUNNING = "isRunning", IS_GROUND = "isOnTheGround";
@@ -32,6 +32,7 @@ public class PlayerScript : MonoBehaviour
         animator = GetComponent<Animator>();
         playerRigid = GetComponent<Rigidbody2D>();
         pt = GetComponent<Transform>();
+        transformVFX = GameObject.Find("VFX").GetComponent<Transform>();
         canJump = true;
 
         if (speed == 0)
@@ -91,6 +92,7 @@ public class PlayerScript : MonoBehaviour
         if (canJump && Input.GetButton("Jump"))
         {
             playerRigid.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            Instantiate(jumpVFX, transformVFX.position, transformVFX.rotation);
             canJump = false;
             animator.SetBool(IS_GROUND, false);
         }
