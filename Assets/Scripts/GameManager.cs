@@ -7,9 +7,12 @@ public class GameManager : MonoBehaviour
     // Singelton for manage the states of the game
     public static GameManager instance;
     public GameState currentGameState;
-    public GameObject mainMenu, inGame, pause, options, gameOver;
+    public GameObject mainMenu, inGame, pause, options, gameOver, exeption;
     public GameObject heart1, heart2, heart3;
     public float contadorAlv;
+
+    bool auxExeption;
+    float coolDownExept;
 
     private void Awake()
     {
@@ -19,6 +22,9 @@ public class GameManager : MonoBehaviour
         }
         SetNewGameState(GameState.starGame);
         contadorAlv = 0;
+        exeption.SetActive(false);
+        auxExeption = false;
+        coolDownExept = 0;
     }
 
     // Update is called once per frame
@@ -64,6 +70,17 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        if (auxExeption && currentGameState == GameState.starGame)
+        {
+            coolDownExept += Time.deltaTime;
+            if (coolDownExept >= 2)
+            {
+                auxExeption = false;
+                exeption.SetActive(auxExeption);
+                coolDownExept = 0;
+            }
+        }
+
         contadorAlv += Time.deltaTime;
     }
 
@@ -85,7 +102,9 @@ public class GameManager : MonoBehaviour
 
     public void OpenOptions()
     {
-        SetNewGameState(GameState.options);
+        //SetNewGameState(GameState.options);
+        exeption.SetActive(true);
+        auxExeption = true;
     }
 
     public void GameOver()
@@ -106,6 +125,8 @@ public class GameManager : MonoBehaviour
                 pause.SetActive(false);
                 options.SetActive(false);
                 gameOver.SetActive(false);
+                exeption.SetActive(false);
+                auxExeption = false;
                 break;
 
             case GameState.inGame:
