@@ -19,7 +19,20 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(currentGameState == GameState.inGame)
+        {
+            if (Input.GetButton("Pause"))
+            {
+                SetNewGameState(GameState.pause);
+            }
+        }
+        else if(currentGameState == GameState.pause)
+        {
+            if (Input.GetButton("Pause"))
+            {
+                SetNewGameState(GameState.inGame);
+            }
+        }
     }
 
     public void StartGame()
