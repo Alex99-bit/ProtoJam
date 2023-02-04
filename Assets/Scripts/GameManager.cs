@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public GameState currentGameState;
     public GameObject mainMenu, inGame, pause, options, gameOver;
+    public GameObject heart1, heart2, heart3;
     public float contadorAlv;
 
     private void Awake()
@@ -29,6 +30,31 @@ public class GameManager : MonoBehaviour
             {
                 SetNewGameState(GameState.pause);
             }
+
+            switch (PlayerScript.sharedInstance.GetHearts())
+            {
+                case 3:
+                    heart1.SetActive(true);
+                    heart2.SetActive(true);
+                    heart3.SetActive(true);
+                    break;
+                case 2:
+                    heart1.SetActive(true);
+                    heart2.SetActive(true);
+                    heart3.SetActive(false);
+                    break;
+                case 1:
+                    heart1.SetActive(true);
+                    heart2.SetActive(false);
+                    heart3.SetActive(false);
+                    break;
+            }
+
+            if (PlayerScript.sharedInstance.GetHearts() <= 0)
+            {
+                heart1.SetActive(false);
+                GameOver();
+            }
         }
         else if(currentGameState == GameState.pause)
         {
@@ -39,6 +65,12 @@ public class GameManager : MonoBehaviour
         }
 
         contadorAlv += Time.deltaTime;
+    }
+
+    public void ResetGame()
+    {
+        SetNewGameState(GameState.starGame);
+        SetNewGameState(GameState.inGame);
     }
 
     public void StartGame()
@@ -68,6 +100,7 @@ public class GameManager : MonoBehaviour
         {
             case GameState.starGame:
                 Time.timeScale = 0;
+                PlayerScript.sharedInstance.SetHearts(PlayerScript.sharedInstance.GetAuxHeart());
                 mainMenu.SetActive(true);
                 inGame.SetActive(false);
                 pause.SetActive(false);

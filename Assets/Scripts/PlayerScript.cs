@@ -8,6 +8,7 @@ public class PlayerScript : MonoBehaviour
 
     [SerializeField] float speed, jumpForce;
     [SerializeField] bool canJump;
+    [SerializeField] int hearts, auxHearts;
 
     Rigidbody2D playerRigid;
     Animator animator;
@@ -41,6 +42,9 @@ public class PlayerScript : MonoBehaviour
         {
             jumpForce = 5;
         }
+
+        hearts = 3;
+        auxHearts = hearts;
     }
 
     // Update is called once per frame
@@ -98,5 +102,20 @@ public class PlayerScript : MonoBehaviour
             canJump = true;
             animator.SetBool(IS_GROUND, true);
         }
+    }
+
+    public int GetHearts()
+    {
+        return hearts;
+    }
+
+    public void SetHearts(int newHeart)
+    {
+        hearts = newHeart;
+    }
+
+    public int GetAuxHeart()
+    {
+        return auxHearts;
     }
 }
