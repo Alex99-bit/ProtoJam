@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
+    public static PlayerScript sharedInstance;
+
     [SerializeField] float speed, jumpForce;
     [SerializeField] bool canJump;
 
@@ -13,6 +15,14 @@ public class PlayerScript : MonoBehaviour
 
     // Animations states
     const string IS_ALIVE = "isAlive", IS_RUNNING = "isRunning", IS_GROUND = "isOnTheGround";
+
+    private void Awake()
+    {
+        if(sharedInstance == null)
+        {
+            sharedInstance = this;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -63,16 +73,17 @@ public class PlayerScript : MonoBehaviour
         else
         {
             // is in idle
-
+            animator.SetBool(IS_RUNNING, false);
         }
     }
 
     void Jump()
     {
-        if (canJump)
+        if (canJump && Input.GetButton("Jump"))
         {
             playerRigid.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             canJump = false;
+            animator.SetBool(IS_GROUND, false);
         }
     }
 
@@ -81,6 +92,7 @@ public class PlayerScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Floor"))
         {
             canJump = true;
+            animator.SetBool(IS_GROUND, true);
         }
     }
 }

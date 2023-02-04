@@ -13,14 +13,7 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
         }
-        else
-        {
-            Destroy(gameObject);
-        }
-
-        SetNewGameState(GameState.starGame);
     }
 
     // Update is called once per frame
