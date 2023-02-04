@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -42,12 +42,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -139,7 +139,133 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: enemy_Slime_Idle_strip6_0
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 16
+        width: 34
+        height: 25
+      alignment: 9
+      pivot: {x: 0.4938244, y: 0.012860718}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 348d9dae4e6359d4c82768935612857d
+      internalID: 1661358282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_Slime_Idle_strip6_1
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 16
+        width: 36
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5000004, y: 0.0013124148}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b7c65ca583b87f4faf7b217969beea1
+      internalID: 201979626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_Slime_Idle_strip6_2
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 16
+        width: 40
+        height: 22
+      alignment: 9
+      pivot: {x: 0.50000036, y: 0.013242635}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47ccf785788c1ed43a4936064ce5a7d1
+      internalID: 93260048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_Slime_Idle_strip6_3
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 16
+        width: 46
+        height: 17
+      alignment: 9
+      pivot: {x: 0.49543595, y: 0.005944084}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a23004a262a9bc4fb051a4ae994fe73
+      internalID: -754906919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_Slime_Idle_strip6_4
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 16
+        width: 40
+        height: 22
+      alignment: 9
+      pivot: {x: 0.5000008, y: 0.003698349}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89ed1ca4d1237c74882f5e20ea20a4f1
+      internalID: -521673605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_Slime_Idle_strip6_5
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 16
+        width: 36
+        height: 24
+      alignment: 9
+      pivot: {x: 0.50000083, y: 0.0013124148}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe72a9910c58e694a8783430b7f8683f
+      internalID: -1132343982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -150,7 +276,13 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      enemy_Slime_Idle_strip6_1: 201979626
+      enemy_Slime_Idle_strip6_3: -754906919
+      enemy_Slime_Idle_strip6_2: 93260048
+      enemy_Slime_Idle_strip6_5: -1132343982
+      enemy_Slime_Idle_strip6_4: -521673605
+      enemy_Slime_Idle_strip6_0: 1661358282
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

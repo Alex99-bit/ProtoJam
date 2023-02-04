@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Floor
+  - Slime
+  - jumpVFX
   layers:
   - Default
   - TransparentFX

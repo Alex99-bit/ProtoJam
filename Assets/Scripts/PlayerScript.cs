@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour
 {
     public static PlayerScript sharedInstance;
+    public GameObject jumpVFX;
 
     [SerializeField] float speed, jumpForce;
     [SerializeField] bool canJump;
