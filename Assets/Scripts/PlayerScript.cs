@@ -119,10 +119,22 @@ public class PlayerScript : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1") && bullets > 0)
         {
+            animator.SetBool(IS_SHOOTING, true);
             // Here we instantiate the bullet when the player are shooting
             GameObject pellet = Instantiate(bulletPlayer, spawnBullet.position, spawnBullet.rotation);
             Rigidbody2D rb = pellet.GetComponent<Rigidbody2D>();
-            rb.AddForce(spawnBullet.up * shootForce, ForceMode2D.Impulse);
+            Transform pelletTf = pellet.GetComponent<Transform>();
+
+            if (pt.localScale.x == 1)
+            {
+                rb.AddForce(spawnBullet.right * shootForce, ForceMode2D.Impulse);
+            }
+            else if(pt.localScale.x == -1)
+            {
+                pelletTf.localScale = new Vector3(-0.2820178f, 0.2820178f, 0.2820178f);
+                rb.AddForce(spawnBullet.right * (-1) * shootForce, ForceMode2D.Impulse);
+            }
+            
             bullets--;
         }
         else
