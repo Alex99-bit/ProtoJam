@@ -140,6 +140,7 @@ public class PlayerScript : MonoBehaviour
         else
         {
             Debug.Log("No es posible disparar");
+            animator.SetBool(IS_SHOOTING, false);
         }
     }
 
