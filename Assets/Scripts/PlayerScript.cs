@@ -158,6 +158,11 @@ public class PlayerScript : MonoBehaviour
             canJump = true;
             animator.SetBool(IS_GROUND, true);
         }
+
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            bullets++;
+        }
     }
 
     /*private void OnCollisionExit2D(Collision2D collision)
@@ -175,6 +180,7 @@ public class PlayerScript : MonoBehaviour
         if (collision.gameObject.name == "calcetas" || collision.gameObject.name == "flauta" || collision.gameObject.name == "collar")
         {
             cons++;
+            bullets += 2;
             if (cons >= 3)
             {
                 GameManager.instance.GameOver("Thanks for Playing");

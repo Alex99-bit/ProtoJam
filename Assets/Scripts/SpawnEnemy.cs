@@ -4,15 +4,43 @@ using UnityEngine;
 
 public class SpawnEnemy : MonoBehaviour
 {
+    public GameObject slime, goblin;
+    public TypeOfCharacter enemy;
+    float seg;
+    //static float auxTime;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        seg = 0;
+        if (enemy == TypeOfCharacter.goblin)
+        {
+            Instantiate(goblin, this.transform);
+        }
+        else if (enemy == TypeOfCharacter.slime)
+        {
+            Instantiate(slime, this.transform);
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (GameManager.instance.currentGameState == GameState.inGame)
+        {
+            if (seg >= 25)
+            {
+                switch (enemy)
+                {
+                    case TypeOfCharacter.goblin:
+                        Instantiate(goblin, this.transform);
+                        break;
+                    case TypeOfCharacter.slime:
+                        Instantiate(slime, this.transform);
+                        break;
+                }
+            }
+
+            seg += Time.deltaTime;
+        }
     }
 }

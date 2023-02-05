@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject mainMenu, inGame, pause, options, gameOver, exeption;
     public GameObject heart1, heart2, heart3;
     public float contadorAlv;
-    public TextMeshProUGUI gameOverText;
+    public TextMeshProUGUI gameOverText, bullets;
 
     bool auxExeption;
     float coolDownExept;
@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
         exeption.SetActive(false);
         auxExeption = false;
         coolDownExept = 0;
+        bullets.text = "x" + PlayerScript.sharedInstance.GetBullets();
     }
 
     // Update is called once per frame
@@ -36,6 +37,8 @@ public class GameManager : MonoBehaviour
     {
         if(currentGameState == GameState.inGame)
         {
+            bullets.text = "x" + PlayerScript.sharedInstance.GetBullets();
+
             if (Input.GetButtonDown("Pause"))
             {
                 SetNewGameState(GameState.pause);

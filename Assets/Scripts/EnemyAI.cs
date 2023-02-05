@@ -85,7 +85,7 @@ public class EnemyAI : MonoBehaviour
             if (follow)
             {
                 FollowPlayer();
-                // jump
+                Jump();
             }
         }   
     }
@@ -232,11 +232,20 @@ public class EnemyAI : MonoBehaviour
         {
             touchingGround = true;
         }
-    }
 
-    enum TypeOfCharacter
-    {
-        goblin,
-        slime
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            life--;
+            if (life <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
+}
+
+public enum TypeOfCharacter
+{
+    goblin,
+    slime
 }
