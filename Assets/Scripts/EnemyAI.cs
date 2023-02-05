@@ -101,7 +101,7 @@ public class EnemyAI : MonoBehaviour
         }
         else
         {
-            transform.Translate(distancePlayer * 0);
+            transform.Translate(distancePlayer * 1);
             animator.SetBool(IS_WALKING, false);
             attack = true;
         }

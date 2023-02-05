@@ -162,7 +162,7 @@ MonoBehaviour:
   speed: 0
   jumpForce: 0
   life: 0
-  playerTf: {fileID: 0}
+  playerTf: {fileID: 5575283172249027243, guid: 3eb93151fda4f3f4f91bd33bb7afd679, type: 3}
   distancePlayer: {x: 0, y: 0, z: 0}
   enemyMask:
     serializedVersion: 2

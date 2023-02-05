@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour
 
     public void ResetGame()
     {
-        PlayerScript.sharedInstance.RestartPos();
+        //PlayerScript.sharedInstance.RestartPos();
         SetNewGameState(GameState.starGame);
         SetNewGameState(GameState.inGame);
     }
@@ -133,9 +133,9 @@ public class GameManager : MonoBehaviour
         {
             case GameState.starGame:
                 Time.timeScale = 0;
-                /*PlayerScript.sharedInstance.hearts = PlayerScript.sharedInstance.auxHearts;
+                PlayerScript.sharedInstance.hearts = PlayerScript.sharedInstance.auxHearts;
                 PlayerScript.sharedInstance.bullets = PlayerScript.sharedInstance.auxBullets;
-                PlayerScript.sharedInstance.RestartPos();*/
+                //PlayerScript.sharedInstance.RestartPos();
                 mainMenu.SetActive(true);
                 inGame.SetActive(false);
                 pause.SetActive(false);

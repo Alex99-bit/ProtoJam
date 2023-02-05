@@ -29,6 +29,7 @@ public class SpawnEnemy : MonoBehaviour
         {
             if (seg >= 25)
             {
+                seg = 0;
                 switch (enemy)
                 {
                     case TypeOfCharacter.goblin:
@@ -38,7 +39,6 @@ public class SpawnEnemy : MonoBehaviour
                         Instantiate(slime, this.transform);
                         break;
                 }
-                seg = 0;
             }
 
             seg += Time.deltaTime;
