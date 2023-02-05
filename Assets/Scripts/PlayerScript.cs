@@ -10,8 +10,8 @@ public class PlayerScript : MonoBehaviour
 
     [SerializeField] float speed, jumpForce, shootForce;
     [SerializeField] bool canJump;
-    [SerializeField] int hearts, auxHearts;
-    [SerializeField] int bullets, auxBullets;
+    public int hearts, auxHearts;
+    public int bullets, auxBullets;
     [SerializeField] GameObject bulletPlayer;
     [SerializeField] Transform spawnBullet, spawn;
 
@@ -25,10 +25,7 @@ public class PlayerScript : MonoBehaviour
 
     private void Awake()
     {
-        if(sharedInstance == null)
-        {
-            sharedInstance = this;
-        }
+        sharedInstance = this;
     }
 
     // Start is called before the first frame update
@@ -78,11 +75,11 @@ public class PlayerScript : MonoBehaviour
 
             print("Alvvvvvv si jalalalalalalal");
         }
+    }
 
-        if (GameManager.instance.currentGameState == GameState.starGame)
-        {
-            pt.transform.position = spawn.transform.position;
-        }
+    public void RestartPos()
+    {
+        pt.transform.position = spawn.transform.position;
     }
 
     void Movement()

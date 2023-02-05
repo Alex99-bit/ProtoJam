@@ -38,6 +38,7 @@ public class SpawnEnemy : MonoBehaviour
                         Instantiate(slime, this.transform);
                         break;
                 }
+                seg = 0;
             }
 
             seg += Time.deltaTime;
