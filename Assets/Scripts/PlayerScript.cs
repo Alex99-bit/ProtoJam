@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,16 +8,19 @@ public class PlayerScript : MonoBehaviour
     public static PlayerScript sharedInstance;
     public GameObject jumpVFX;
 
-    [SerializeField] float speed, jumpForce;
+    [SerializeField] float speed, jumpForce, shootForce;
     [SerializeField] bool canJump;
     [SerializeField] int hearts, auxHearts;
+    [SerializeField] int bullets, auxBullets;
+    [SerializeField] GameObject bulletPlayer;
+    [SerializeField] Transform spawnBullet;
 
     Rigidbody2D playerRigid;
     Animator animator;
     [SerializeField] Transform pt, transformVFX;
 
     // Animations states
-    const string IS_ALIVE = "isAlive", IS_RUNNING = "isRunning", IS_GROUND = "isOnTheGround";
+    const string IS_SHOOTING = "isShooting", IS_RUNNING = "isRunning", IS_GROUND = "isOnTheGround";
 
     private void Awake()
     {
@@ -45,8 +49,20 @@ public class PlayerScript : MonoBehaviour
             jumpForce = 5;
         }
 
+        if (bullets == 0)
+        {
+            bullets = 4;
+        }
+
+        if (shootForce == 0)
+        {
+            shootForce = 15;
+        }
+
         hearts = 3;
         auxHearts = hearts;
+
+        auxBullets = bullets;
     }
 
     // Update is called once per frame
@@ -56,6 +72,7 @@ public class PlayerScript : MonoBehaviour
         {
             Movement();
             Jump();
+            Shoot();
 
             print("Alvvvvvv si jalalalalalalal");
         }
@@ -98,6 +115,22 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    void Shoot()
+    {
+        if (Input.GetButtonDown("Fire1") && bullets > 0)
+        {
+            // Here we instantiate the bullet when the player are shooting
+            GameObject pellet = Instantiate(bulletPlayer, spawnBullet.position, spawnBullet.rotation);
+            Rigidbody2D rb = pellet.GetComponent<Rigidbody2D>();
+            rb.AddForce(spawnBullet.up * shootForce, ForceMode2D.Impulse);
+            bullets--;
+        }
+        else
+        {
+            Debug.Log("No es posible disparar");
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Floor"))
@@ -120,5 +153,20 @@ public class PlayerScript : MonoBehaviour
     public int GetAuxHeart()
     {
         return auxHearts;
+    }
+
+    public int GetBullets()
+    {
+        return bullets;
+    }
+
+    public int GetAuxBullets()
+    {
+        return auxBullets;
+    }
+
+    public void SetBullets(int newBullets)
+    {
+        bullets = newBullets;
     }
 }

@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
     // Singelton for manage the states of the game
     public static GameManager instance;
+
+
     public GameState currentGameState;
     public GameObject mainMenu, inGame, pause, options, gameOver, exeption;
     public GameObject heart1, heart2, heart3;
@@ -120,6 +122,7 @@ public class GameManager : MonoBehaviour
             case GameState.starGame:
                 Time.timeScale = 0;
                 PlayerScript.sharedInstance.SetHearts(PlayerScript.sharedInstance.GetAuxHeart());
+                PlayerScript.sharedInstance.SetBullets(PlayerScript.sharedInstance.GetAuxBullets());
                 mainMenu.SetActive(true);
                 inGame.SetActive(false);
                 pause.SetActive(false);
