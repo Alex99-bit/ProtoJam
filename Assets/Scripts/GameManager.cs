@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
         exeption.SetActive(false);
         auxExeption = false;
         coolDownExept = 0;
-        bullets.text = "x" + PlayerScript.sharedInstance.GetBullets();
+        //bullets.text = "x" + PlayerScript.sharedInstance.GetBullets();
     }
 
     // Update is called once per frame
