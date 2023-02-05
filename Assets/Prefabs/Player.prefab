@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7015759283961068830}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spawnBullet
   m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7435303484717388647}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: VFX
   m_TagString: Untagged
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 5575283172249027241}
   - component: {fileID: 5575283172249027242}
   - component: {fileID: 5575283172249027240}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -224,7 +224,7 @@ MonoBehaviour:
   jumpVFX: {fileID: 2887288953133261991, guid: b45743e994bdae545a73623a6c127b77, type: 3}
   speed: 6
   jumpForce: 7
-  shootForce: 0
+  shootForce: 50
   canJump: 0
   hearts: 0
   auxHearts: 0
@@ -232,5 +232,6 @@ MonoBehaviour:
   auxBullets: 0
   bulletPlayer: {fileID: 7727646095930007242, guid: 537869856e8653348b07c8e4f07c6b6c, type: 3}
   spawnBullet: {fileID: 7015759283961068830}
+  spawn: {fileID: 0}
   pt: {fileID: 0}
   transformVFX: {fileID: 0}

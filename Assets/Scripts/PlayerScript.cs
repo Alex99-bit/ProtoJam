@@ -13,14 +13,14 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] int hearts, auxHearts;
     [SerializeField] int bullets, auxBullets;
     [SerializeField] GameObject bulletPlayer;
-    [SerializeField] Transform spawnBullet;
+    [SerializeField] Transform spawnBullet, spawn;
 
     Rigidbody2D playerRigid;
     Animator animator;
     [SerializeField] Transform pt, transformVFX;
 
     // Animations states
-    const string IS_SHOOTING = "isShooting", IS_RUNNING = "isRunning", IS_GROUND = "isOnTheGround";
+    const string IS_SHOOTING = "isShooting", IS_RUNNING = "isRunning", IS_GROUND = "isOnTheGround", IS_FALLING = "isFalling";
 
     private void Awake()
     {
@@ -75,6 +75,11 @@ public class PlayerScript : MonoBehaviour
             Shoot();
 
             print("Alvvvvvv si jalalalalalalal");
+        }
+
+        if (GameManager.instance.currentGameState == GameState.starGame)
+        {
+            pt.transform.position = spawn.transform.position;
         }
     }
 
@@ -152,6 +157,16 @@ public class PlayerScript : MonoBehaviour
             animator.SetBool(IS_GROUND, true);
         }
     }
+
+    /*private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Floor") && canJump)
+        {
+            canJump = false;
+            animator.SetBool(IS_GROUND, false);
+            animator.SetBool(IS_FALLING, true);
+        }
+    }*/
 
     public int GetHearts()
     {

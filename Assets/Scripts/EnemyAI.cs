@@ -7,7 +7,7 @@ using UnityEngine.Windows.Speech;
 public class EnemyAI : MonoBehaviour
 {
     [SerializeField] TypeOfCharacter charact;
-    [SerializeField] float speed;
+    [SerializeField] float speed, jumpForce;
     [SerializeField] int life;
     [SerializeField] Transform playerTf;
     [SerializeField] Vector3 distancePlayer;
@@ -16,7 +16,7 @@ public class EnemyAI : MonoBehaviour
 
     Animator animator;
 
-    bool playerCloser, attack, follow;
+    bool playerCloser, attack, follow, touchingGround;
     const string IS_ATTACK = "isAttack", IS_WALKING = "isWalking";
 
     Rigidbody2D enemyRb;
@@ -50,6 +50,11 @@ public class EnemyAI : MonoBehaviour
             case TypeOfCharacter.slime:
                 speed *= 1;
                 life += 2;
+
+                if (jumpForce == 0)
+                {
+                    jumpForce = 10;
+                }
                 break;
 
             default:
@@ -62,14 +67,27 @@ public class EnemyAI : MonoBehaviour
     {
         if (GameManager.instance.currentGameState == GameState.inGame)
         {
-            FollowPlayer();
             distancePlayer = playerTf.transform.position - this.transform.position;
+
+            StartFolloWThePlayer();
 
             if (follow)
             {
                 StopChar();
             }
         }
+    }
+
+    void FixedUpdate()
+    {
+        if (GameManager.instance.currentGameState == GameState.inGame)
+        {
+            if (follow)
+            {
+                FollowPlayer();
+                // jump
+            }
+        }   
     }
 
     void FollowPlayer()
@@ -121,7 +139,46 @@ public class EnemyAI : MonoBehaviour
 
         if (!Physics2D.Raycast(this.transform.position,distancePlayer, 2f, enemyMask))
         {
-
+            if (!(Physics2D.Raycast(feet.transform.position, Vector2.right, 2.5f, ground)) || !(Physics2D.Raycast(feet.transform.position, Vector2.left, 2.5f, ground)))
+            {
+                if (playerTf.position.y > this.transform.position.y)
+                {
+                    aux = 2f;
+                    if ((playerTf.position.y) <= (this.transform.position.y + aux))
+                    {
+                        playerCloser = true;
+                    }
+                    else
+                    {
+                        playerCloser = false;
+                    }
+                }
+                else if (playerTf.position.y < this.transform.position.y)
+                {
+                    aux = -2f;
+                    if (playerTf.position.y >= (this.transform.position.y + aux))
+                    {
+                        playerCloser = true;
+                    }
+                    else
+                    {
+                        playerCloser = false;
+                    }
+                }
+                else
+                {
+                    aux = 0;
+                    playerCloser = true;
+                }
+            }
+            else
+            {
+                playerCloser = false;
+            }
+        }
+        else
+        {
+            playerCloser = false;
         }
     }
 
@@ -134,12 +191,46 @@ public class EnemyAI : MonoBehaviour
                 if (attack)
                 {
                     animator.SetBool(IS_ATTACK, true);
+                    PlayerScript.sharedInstance.SetHearts(PlayerScript.sharedInstance.GetHearts() - 1);
                 }
-                else
+                else 
                 {
                     animator.SetBool(IS_ATTACK, false);
                 }
             }
+        }
+    }
+
+    void StartFolloWThePlayer()
+    {
+        if (Physics2D.Raycast(this.transform.position, distancePlayer, 10f, enemyMask))
+        {
+            follow = true;
+        }
+        else
+        {
+            follow = false;
+            animator.SetBool(IS_WALKING, false);
+        }
+    }
+
+    void Jump()
+    {
+        if (charact == TypeOfCharacter.slime)
+        {
+            if (touchingGround)
+            {
+                enemyRb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                touchingGround = false;
+            }
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Floor"))
+        {
+            touchingGround = true;
         }
     }
 
