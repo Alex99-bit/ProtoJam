@@ -21,6 +21,7 @@ public class PlayerScript : MonoBehaviour
 
     // Animations states
     const string IS_SHOOTING = "isShooting", IS_RUNNING = "isRunning", IS_GROUND = "isOnTheGround", IS_FALLING = "isFalling";
+    int cons;
 
     private void Awake()
     {
@@ -38,6 +39,7 @@ public class PlayerScript : MonoBehaviour
         pt = GetComponent<Transform>();
         transformVFX = GameObject.Find("VFX").GetComponent<Transform>();
         canJump = true;
+        cons = 0;
 
         if (speed == 0)
         {
@@ -167,6 +169,18 @@ public class PlayerScript : MonoBehaviour
             animator.SetBool(IS_FALLING, true);
         }
     }*/
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "calcetas" || collision.gameObject.name == "flauta" || collision.gameObject.name == "collar")
+        {
+            cons++;
+            if (cons >= 3)
+            {
+                GameManager.instance.GameOver("Thanks for Playing");
+            }
+        }
+    }
 
     public int GetHearts()
     {

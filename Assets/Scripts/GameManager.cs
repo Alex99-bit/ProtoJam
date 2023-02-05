@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -12,6 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject mainMenu, inGame, pause, options, gameOver, exeption;
     public GameObject heart1, heart2, heart3;
     public float contadorAlv;
+    public TextMeshProUGUI gameOverText;
 
     bool auxExeption;
     float coolDownExept;
@@ -61,7 +63,7 @@ public class GameManager : MonoBehaviour
             if (PlayerScript.sharedInstance.GetHearts() <= 0)
             {
                 heart1.SetActive(false);
-                GameOver();
+                GameOver("Game Over");
             }
         }
         else if(currentGameState == GameState.pause)
@@ -109,8 +111,9 @@ public class GameManager : MonoBehaviour
         auxExeption = true;
     }
 
-    public void GameOver()
+    public void GameOver(string newText)
     {
+        gameOverText.text = newText;
         SetNewGameState(GameState.gameOver);
     }
 
