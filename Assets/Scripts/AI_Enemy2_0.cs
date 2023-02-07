@@ -4,17 +4,39 @@ using UnityEngine;
 
 public class AI_Enemy2_0 : MonoBehaviour
 {
-    public float speed = 5;
-    public float attackRange = 1;
-    public float attackDuration = 1;
-    public int damage = 1;
+    public float speed;
+    public float attackRange;
+    public float attackDuration;
+    public int damage;
 
     private Transform player;
-    private float attackTimer = 0;
+    private float attackTimer;
 
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
+        
+        if (speed == 0)
+        {
+            speed = 5;
+        }
+
+        if (attackRange == 0)
+        {
+            attackRange = 1;
+        }
+
+        if (attackDuration == 0)
+        {
+            attackDuration = 1;
+        }
+
+        if (damage == 0)
+        {
+            damage = 1;
+        }
+
+        attackTimer = 0;
     }
 
     void Update()
