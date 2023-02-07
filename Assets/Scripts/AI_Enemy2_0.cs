@@ -51,7 +51,8 @@ public class AI_Enemy2_0 : MonoBehaviour
             attackTimer -= Time.deltaTime;
             if (attackTimer <= 0)
             {
-                player.GetComponent<Health>().TakeDamage(damage);
+                //player.GetComponent<Health>().TakeDamage(damage);
+                PlayerScript.sharedInstance.hearts = PlayerScript.sharedInstance.hearts - damage;
                 attackTimer = attackDuration;
             }
         }

@@ -9,7 +9,7 @@ public class PlayerScript : MonoBehaviour
     public GameObject jumpVFX;
 
     [SerializeField] float speed, jumpForce, shootForce;
-    [SerializeField] bool canJump;
+    [SerializeField] bool canJump, canTakeBullet;
     public int hearts, auxHearts;
     public int bullets, auxBullets;
     [SerializeField] GameObject bulletPlayer;
@@ -22,10 +22,14 @@ public class PlayerScript : MonoBehaviour
     // Animations states
     const string IS_SHOOTING = "isShooting", IS_RUNNING = "isRunning", IS_GROUND = "isOnTheGround", IS_FALLING = "isFalling";
     int cons;
+    float coolDownBullet;
 
     private void Awake()
     {
-        sharedInstance = this;
+        if (sharedInstance == null)
+        {
+            sharedInstance = this;
+        }
     }
 
     // Start is called before the first frame update
@@ -37,6 +41,8 @@ public class PlayerScript : MonoBehaviour
         transformVFX = GameObject.Find("VFX").GetComponent<Transform>();
         canJump = true;
         cons = 0;
+        coolDownBullet = 0;
+        canTakeBullet = true;
 
         if (speed == 0)
         {
@@ -73,13 +79,23 @@ public class PlayerScript : MonoBehaviour
             Jump();
             Shoot();
 
+            if (!canTakeBullet)
+            {
+                coolDownBullet += Time.deltaTime;
+                if (coolDownBullet >= 3.3f)
+                {
+                    coolDownBullet = 0;
+                    canTakeBullet = true;
+                }
+            }
+
             print("Alvvvvvv si jalalalalalalal");
         }
     }
 
     public void RestartPos()
     {
-        pt.transform.position = spawn.transform.position;
+        //pt.transform.position = spawn.transform.position;
     }
 
     void Movement()
@@ -138,7 +154,7 @@ public class PlayerScript : MonoBehaviour
                 pelletTf.localScale = new Vector3(-0.2820178f, 0.2820178f, 0.2820178f);
                 rb.AddForce(spawnBullet.right * (-1) * shootForce, ForceMode2D.Impulse);
             }
-            
+            canTakeBullet = false;
             bullets--;
         }
         else
@@ -156,9 +172,10 @@ public class PlayerScript : MonoBehaviour
             animator.SetBool(IS_GROUND, true);
         }
 
-        if (collision.gameObject.CompareTag("Bullet"))
+        if (collision.gameObject.CompareTag("Bullet") && coolDownBullet >= 3)
         {
             bullets++;
+            Destroy(collision.gameObject);
         }
     }
 
@@ -176,6 +193,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (collision.gameObject.name == "calcetas" || collision.gameObject.name == "flauta" || collision.gameObject.name == "collar")
         {
+            Destroy(collision.gameObject);
             cons++;
             bullets += 2;
             if (cons >= 3)

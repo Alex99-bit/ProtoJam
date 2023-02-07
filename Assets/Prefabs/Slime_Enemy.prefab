@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 7858700308313485695}
   - component: {fileID: 7858700308313485680}
   - component: {fileID: 7858700308313485681}
-  - component: {fileID: -5597705190268803762}
+  - component: {fileID: -1514439711798349807}
   m_Layer: 0
   m_Name: Slime_Enemy
   m_TagString: Slime
@@ -204,7 +204,7 @@ CircleCollider2D:
   m_Offset: {x: 0.013123155, y: 0.7563554}
   serializedVersion: 2
   m_Radius: 0.76972663
---- !u!114 &-5597705190268803762
+--- !u!114 &-1514439711798349807
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -213,19 +213,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7858700308313485691}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1a78ad9ad12c104eae9aa6a85f0ca3e, type: 3}
+  m_Script: {fileID: 11500000, guid: 9ca49223323533b4fa46b331d21ee184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charact: 1
   speed: 0
-  jumpForce: 0
-  life: 0
-  playerTf: {fileID: 0}
-  distancePlayer: {x: 0, y: 0, z: 0}
-  enemyMask:
-    serializedVersion: 2
-    m_Bits: 128
-  ground:
-    serializedVersion: 2
-    m_Bits: 64
-  feet: {fileID: 4591382298783797140}
+  attackRange: 0
+  attackDuration: 0
+  damage: 0
