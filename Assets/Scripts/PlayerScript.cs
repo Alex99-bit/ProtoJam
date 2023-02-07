@@ -172,7 +172,7 @@ public class PlayerScript : MonoBehaviour
             animator.SetBool(IS_GROUND, true);
         }
 
-        if (collision.gameObject.CompareTag("Bullet") && coolDownBullet >= 3)
+        if (collision.gameObject.CompareTag("Bullet") && canTakeBullet)
         {
             bullets++;
             Destroy(collision.gameObject);
