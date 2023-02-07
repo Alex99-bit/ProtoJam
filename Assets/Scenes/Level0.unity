@@ -246,7 +246,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1204384699018700232, guid: 4cb28faeec7506c4e8d9516746f4a94b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cb28faeec7506c4e8d9516746f4a94b, type: 3}
@@ -840,7 +840,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1204384699018700232, guid: 4cb28faeec7506c4e8d9516746f4a94b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2243070639116189362, guid: 4cb28faeec7506c4e8d9516746f4a94b, type: 3}
       propertyPath: enemy
@@ -2022,6 +2022,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3833692793380660336, guid: f52730ca30b6dbd4caa594de8fe44364, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3833692793380660338, guid: f52730ca30b6dbd4caa594de8fe44364, type: 3}
       propertyPath: m_RootOrder
       value: 24
@@ -2068,7 +2072,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3833692793380660351, guid: f52730ca30b6dbd4caa594de8fe44364, type: 3}
       propertyPath: m_Name
-      value: calceta
+      value: calcetas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f52730ca30b6dbd4caa594de8fe44364, type: 3}
