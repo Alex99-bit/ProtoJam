@@ -82,7 +82,7 @@ public class PlayerScript : MonoBehaviour
             if (!canTakeBullet)
             {
                 coolDownBullet += Time.deltaTime;
-                if (coolDownBullet >= 3.3f)
+                if (coolDownBullet >= 3f)
                 {
                     coolDownBullet = 0;
                     canTakeBullet = true;
