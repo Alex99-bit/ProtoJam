@@ -11,10 +11,14 @@ public class AI_Enemy2_0 : MonoBehaviour
 
     private Transform player;
     private float attackTimer;
+    Animator animator;
+
+    const string IS_ATTACK = "isAttack", IS_WALKING = "isWalking";
 
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
+        animator = GetComponent<Animator>();
         
         if (speed == 0)
         {
@@ -45,6 +49,8 @@ public class AI_Enemy2_0 : MonoBehaviour
         if (Vector2.Distance(transform.position, player.position) > attackRange)
         {
             transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+            animator.SetBool(IS_WALKING, true);
+            animator.SetBool(IS_ATTACK, false);
         }
         else // Ataca al jugador si está cerca
         {
@@ -52,9 +58,13 @@ public class AI_Enemy2_0 : MonoBehaviour
             if (attackTimer <= 0)
             {
                 //player.GetComponent<Health>().TakeDamage(damage);
-                PlayerScript.sharedInstance.hearts = PlayerScript.sharedInstance.hearts - damage;
+                //PlayerScript.sharedInstance.SetHearts(PlayerScript.sharedInstance.GetHearts() - damage);
+                PlayerScript.sharedInstance.hearts -= damage;
                 attackTimer = attackDuration;
+                animator.SetBool(IS_ATTACK, true);
             }
+            animator.SetBool(IS_WALKING, false);
+            animator.SetBool(IS_ATTACK, false);
         }
     }
 }

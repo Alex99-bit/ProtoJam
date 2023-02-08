@@ -26,10 +26,8 @@ public class PlayerScript : MonoBehaviour
 
     private void Awake()
     {
-        if (sharedInstance == null)
-        {
-            sharedInstance = this;
-        }
+        sharedInstance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     // Start is called before the first frame update
@@ -172,7 +170,7 @@ public class PlayerScript : MonoBehaviour
             animator.SetBool(IS_GROUND, true);
         }
 
-        if (collision.gameObject.CompareTag("Bullet") && canTakeBullet)
+        if (collision.gameObject.CompareTag("Bullet"))
         {
             bullets++;
             Destroy(collision.gameObject);
@@ -205,31 +203,31 @@ public class PlayerScript : MonoBehaviour
 
     public int GetHearts()
     {
-        return hearts;
+        return this.hearts;
     }
 
     public void SetHearts(int newHeart)
     {
-        hearts = newHeart;
+        this.hearts = newHeart;
     }
 
     public int GetAuxHeart()
     {
-        return auxHearts;
+        return this.auxHearts;
     }
 
     public int GetBullets()
     {
-        return bullets;
+        return this.bullets;
     }
 
     public int GetAuxBullets()
     {
-        return auxBullets;
+        return this.auxBullets;
     }
 
     public void SetBullets(int newBullets)
     {
-        bullets = newBullets;
+        this.bullets = newBullets;
     }
 }

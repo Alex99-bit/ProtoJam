@@ -133,9 +133,13 @@ public class GameManager : MonoBehaviour
         {
             case GameState.starGame:
                 Time.timeScale = 0;
-                PlayerScript.sharedInstance.hearts = PlayerScript.sharedInstance.auxHearts;
+                /*PlayerScript.sharedInstance.hearts = PlayerScript.sharedInstance.auxHearts;
                 PlayerScript.sharedInstance.bullets = PlayerScript.sharedInstance.auxBullets;
-                //PlayerScript.sharedInstance.RestartPos();
+                /*PlayerScript.sharedInstance.RestartPos();*/
+
+                /*PlayerScript.sharedInstance.SetHearts(PlayerScript.sharedInstance.GetAuxHeart());
+                PlayerScript.sharedInstance.SetBullets(PlayerScript.sharedInstance.GetAuxBullets());
+                PlayerScript.sharedInstance.RestartPos();*/
                 mainMenu.SetActive(true);
                 inGame.SetActive(false);
                 pause.SetActive(false);
